@@ -22,12 +22,14 @@ The purpose of this template is to kick-start your Node.js projects using ES6. I
     - bunyan is required for displaying the application log in a human readable format
 
 ## Quick Start
-Run the application locally:
+First make a copy of the sample environment file `.env-sample` to `.env`. Make any environment changes only in this copy. The `.env` file may vary for different environments (development, test, prod etc.) and should not be checked in to the repository. 
+
+Now you can run the application:
 ```bash
 $ npm install
 $ npm start
 ```
-- `npm install` will install the required node libraries under `node_modules`.
+- `npm install` will install the required node libraries under `node_modules`. This needs to be run only once.
 - `npm start` will start the application. It is designed for an efficient development process. As you make changes to the code, the application will restart to reflect the changes immediately.
 
 To verify that the application is working correctly, point your browser to [http://localhost:8080/accounts](http://localhost:8080/accounts) - you should see a response with a list of accounts in JSON format. Since the persistence layer is in memory, the list will be empty.
