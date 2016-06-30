@@ -98,7 +98,7 @@ gulp.task('serve', ['build'], function () {
     var nodeOptions = {
         script: nodeServer,
         watch: SRC_DIR,
-        ext: 'ts',
+        ext: 'js',
         tasks: ['build'],
         env: {
             'PORT': port
