@@ -27,33 +27,12 @@ gulp.task('clean', function() {
     return del([DST_DIR]);
 });
 
-// Send a notification when JSHint fails,
-// so that you know your changes didn't build
-function jshintNotify(file) {
-    if (!file.jshint) {
-        return;
-    }
-    return file.jshint.success ? false : 'JSHint failed';
-}
-
-function jscsNotify(file) {
-    if (!file.jscs) {
-        return;
-    }
-    return file.jscs.success ? false : 'JSCS failed';
-}
-
 function createLintTask(taskName, files) {
     gulp.task(taskName, function() {
         return gulp.src(files)
-            .pipe($.plumber())
-            .pipe($.jshint())
-            .pipe($.jshint.reporter('jshint-stylish'))
-            .pipe($.notify(jshintNotify))
-            .pipe($.jscs())
-            .pipe($.jscs.reporter())
-            .pipe($.notify(jscsNotify))
-            .pipe($.jshint.reporter('fail'));
+            .pipe($.eslint())
+            .pipe($.eslint.format())
+            .pipe($.eslint.failAfterError());
     });
 }
 
