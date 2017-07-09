@@ -13,12 +13,12 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
     "lint": "eslint src --ext .js",
+    "lint:test": "eslint test --ext .js",
     "test": "mocha",
     "build": "del-cli dist && npm run lint && babel src -d dist",
     "start": "node dist/index.js | bunyan -o short"
   },
   "dependencies": {
-    "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "bunyan": "^1.8.10",
     "cors": "^2.8.3",

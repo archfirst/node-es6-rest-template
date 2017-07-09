@@ -53,12 +53,14 @@ class AccountAdapter {
             .then(function(account) {
                 res.send(account);
             })
-            .catch(NotFoundError, function() {
-                res.status(404).send({'message': 'Account ' + id + ' does not exist'});
-            })
             .catch(function(error) {
                 log.error(error);
-                res.status(500).send({'message': error.toString()});
+                if (error instanceof NotFoundError) {
+                    res.status(404).send({'message': 'Account ' + id + ' does not exist'});
+                }
+                else {
+                    res.status(500).send({'message': error.toString()});
+                }
             });
     };
 

@@ -1,4 +1,3 @@
-import * as Promise from 'bluebird';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { NotFoundError } from '../core/index';
