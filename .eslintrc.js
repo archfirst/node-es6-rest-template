@@ -6,7 +6,6 @@ module.exports = {
         mocha: true
     },
     globals: {
-        React: false,
         expect: true,
         __DEV__: true,
         sinon: true,
@@ -18,13 +17,10 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 6,
         ecmaFeatures: {
-            experimentalObjectRestSpread: true,
-            jsx: true
+            experimentalObjectRestSpread: true
         },
         sourceType: 'module'
     },
-    plugins: [
-    ],
     extends: [
         'eslint:recommended'
     ],
