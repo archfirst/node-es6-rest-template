@@ -51,8 +51,9 @@ Testing the application
 - Make sure the server is running.
 - In another shell, run acceptance tests using the following command
 
-
-    $ npm test
+```bash
+$ npm test
+```
 
 Building for production
 -----------------------
