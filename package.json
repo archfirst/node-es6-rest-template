@@ -1,7 +1,8 @@
 {
   "name": "node-es6-rest-template",
-  "description": "A template to kick-start Node.js projects using ES6 and RESTful API best practices",
   "version": "0.1.0",
+  "description": "A template to kick-start Node.js projects using ES6 and RESTful API best practices",
+  "main": "dist/server.js",
   "author": "Naresh Bhatia",
   "license": "MIT",
   "homepage": "https://github.com/archfirst/node-es6-rest-template",
@@ -10,41 +11,35 @@
     "url": "https://github.com/archfirst/node-es6-rest-template.git"
   },
   "scripts": {
-    "start": "gulp serve | bunyan -o short",
-    "test": "gulp test",
-    "build": "gulp build"
+    "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
+    "test": "mocha",
+    "prestart": "babel src -d dist",
+    "start": "node dist/index.js | bunyan -o short",
+    "lint": "eslint src --ext .js"
   },
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "body-parser": "^1.15.1",
-    "bunyan": "^1.8.5",
-    "cors": "^2.8.1",
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "lodash": "^4.17.1",
-    "morgan": "^1.7.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "bunyan": "^1.8.10",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.2",
     "underscore.string": "^3.3.4"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.0",
-    "babel-preset-es2015": "^6.18.0",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-eslint": "^3.0.1",
-    "gulp-load-plugins": "^1.4.0",
-    "gulp-mocha": "^3.0.1",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-notify": "^2.1.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-util": "^3.0.7",
-    "isparta": "^4.0.0",
-    "mkdirp": "^0.5.0",
-    "mocha": "^3.1.2",
-    "superagent": "^2.3.0",
-    "yadda": "^0.22.1"
-  },
-  "main": "dist/server.js"
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^3.19.0",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "superagent": "^3.5.2",
+    "yadda": "^1.3.0"
+  }
 }
