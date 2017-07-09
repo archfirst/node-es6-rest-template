@@ -38,14 +38,19 @@ To verify that the application is working correctly, point your browser to [http
 
 Running Lint
 ------------
-To run ESLint:
+To run ESLint on the `src` folder:
 
     $ npm run lint
+
+To run ESLint on the `test` folder:
+
+    $ npm run lint:test
 
 Testing the application
 -----------------------
 - Make sure the server is running.
 - In another shell, run acceptance tests using the following command
+
 
     $ npm test
 
@@ -58,7 +63,7 @@ $ npm run build
 $ npm start
 ```
 
-- `npm run build` transpiles the ES6 code into the dist directory. This needs to be run only once.
+- `npm run build` compiles the ES6 code into the dist directory. This needs to be run only once.
 - `npm start` runs the application from the dist directory.
 
 You can also substitute the following command instead of `npm start` to avoid a dependency on npm:
@@ -67,7 +72,7 @@ You can also substitute the following command instead of `npm start` to avoid a 
 
 Debugging the application
 -------------------------
-To debug the application start node with --inspect option
+To debug the application start node with `--inspect` option
 
     $ node --inspect dist/index.js | bunyan -o short
     
