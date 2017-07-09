@@ -21,8 +21,8 @@ Requirements
     - node-gyp is required for `npm install` to succeed
     - bunyan is required for displaying the application log in a human readable format
 
-Getting started
----------------
+Getting started (Dev Mode)
+--------------------------
 First make a copy of the sample environment file `.env-sample` to `.env`. Make any environment changes only in this copy. The `.env` file may vary for different environments (development, test, prod etc.) and should not be checked in to the repository. 
 
 To run the application in development mode:
@@ -30,31 +30,49 @@ To run the application in development mode:
 $ npm install
 $ npm run dev
 ```
+
 - `npm install` will install the required node libraries under `node_modules`. This needs to be run only once.
 - `npm run dev` will start the application. It is designed for an efficient development process. As you make changes to the code, the application will restart to reflect the changes immediately.
 
 To verify that the application is working correctly, point your browser to [http://localhost:8080/v1/accounts](http://localhost:8080/v1/accounts) - you should see a response with a list of accounts in JSON format. Since the persistence layer is in memory, the list will be empty.
 
-When you want to deploy the application into production, run the following command:
-
-    $ node start
-
-To debug the application use node-debug (start node-debug on port 9090 because the application itself uses the default port 8080)
-
-    $ node-debug --web-port 9090 dist/server.js | bunyan -o short
-    
+Running Lint
+------------
 To run ESLint:
 
     $ npm run lint
 
-To test the application:
-
+Testing the application
+-----------------------
 - Make sure the server is running.
 - In another shell, run acceptance tests using the following command
 
     $ npm test
 
-## Folder Structure
+Building for production
+-----------------------
+When you want to deploy the application into production, run the following command:
+
+```bash
+$ npm run build
+$ npm start
+```
+
+- `npm run build` transpiles the ES6 code into the dist directory. This needs to be run only once.
+- `npm start` runs the application from the dist directory.
+
+You can also substitute the following command instead of `npm start` to avoid a dependency on npm:
+
+    node dist/index.js | bunyan -o short
+
+Debugging the application
+-------------------------
+To debug the application start node with --inspect option
+
+    $ node --inspect dist/index.js | bunyan -o short
+    
+Folder Structure
+----------------
 
 ### Highest Level Structure
 
@@ -76,16 +94,14 @@ To test the application:
 /src
     /adapters
     /app
-    /db
-    /infrastructure
+    /core
 ```
 
 The server folder contains sub-folders that arrange the application into logical layers as suggested by the [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture) (a.k.a. the [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)):
 
-- The `adapter` layer *adapts* interactions from the external world to the application layer. Currently this layer contains only the REST adapters that converts incoming HTTP messages to a format acceptable by the application layer.
+- The `adapter` layer *adapts* interactions from the external world to the application layer. This layer contains REST adapters as well as database repositories that allow the application layer to interact with the external world. Note that we are using in-memory persistence in the repositories. These can be easily modified to persist to a relational or NoSQL database.
 
 - The `application` layer coordinates high-level activities such as creation of the domain objects and asking them to perform tasks requested by the external world.
 
-- The `db` layer handles in-memory persistence using the repository pattern. This layer can be easily modified to persist to a relational or NoSQL database.
+- The `core` layer contains common application facilities such as logging and database initialization.
 
-- The `infrastructure` layer contains common application facilities such as logging and database initialization.

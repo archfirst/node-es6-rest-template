@@ -1,11 +1,12 @@
 import * as Promise from 'bluebird';
-import * as _ from 'lodash';
-import { NotFoundError } from '../infrastructure';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import { NotFoundError } from '../core/index';
 
 var accounts = [];
 var nextAccountId = 1;
 
-export default class AccountRepository {
+class AccountRepository {
     /**
      * Creates a new account and inserts it in to the database.
      * @param {Object} accountData minus the id
@@ -23,7 +24,7 @@ export default class AccountRepository {
      * @return {Promise} A promise that returns the updated account (including the id)
      */
     updateAccount(accountData) {
-        var account = _.find(accounts, ['id', accountData.id]);
+        var account = find(accounts, ['id', accountData.id]);
         return account ?
             Promise.resolve(Object.assign(account, accountData)) :
             Promise.reject(new NotFoundError());
@@ -35,7 +36,7 @@ export default class AccountRepository {
      * @return {Promise} A promise that returns the desired account.
      */
     getAccount(id) {
-        var account = _.find(accounts, ['id', id]);
+        var account = find(accounts, ['id', id]);
         return account ?
             Promise.resolve(account) :
             Promise.reject(new NotFoundError());
@@ -55,7 +56,7 @@ export default class AccountRepository {
      * @return {Promise} A promise that gets fulfilled when the account is deleted.
      */
     deleteAccount(id) {
-        var index = _.findIndex(accounts, function(account) {
+        var index = findIndex(accounts, function(account) {
             return account.id === id;
         });
         return index >= 0 ?
@@ -70,3 +71,7 @@ export default class AccountRepository {
         accounts.length = 0;
     }
 }
+
+let accountRepository = new AccountRepository();
+
+export default accountRepository;

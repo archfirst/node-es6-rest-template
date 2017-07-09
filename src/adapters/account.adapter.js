@@ -1,13 +1,13 @@
-import { log, NotFoundError } from '../infrastructure';
+import { log, NotFoundError } from '../core';
 import { accountService } from '../app';
 
-export default class TestAdapter {
+class AccountAdapter {
     /**
      * Creates a new account and inserts it in to the database.
      * @param {Object} req - req.body contains accountData minus the id
      * @param {Object} res - res.body contains the inserted account (including the id)
      */
-    createAccount(req, res) {
+    createAccount = (req, res) => {
 
         var accountData = req.body;
 
@@ -19,14 +19,14 @@ export default class TestAdapter {
                 log.error(error);
                 res.status(500).send({'message': error.toString()});
             });
-    }
+    };
 
     /**
      * Updates an existing account.
      * @param {Object} req - req.body contains accountData including the id
      * @param {Object} res - res.body contains the updated account (including the id)
      */
-    updateAccount(req, res) {
+    updateAccount = (req, res) => {
 
         var accountData = req.body;
 
@@ -38,14 +38,14 @@ export default class TestAdapter {
                 log.error(error);
                 res.status(500).send({'message': error.toString()});
             });
-    }
+    };
 
     /**
      * Gets an existing account.
      * @param {Object} req - req.params.id contains id of the account to get
      * @param {Object} res - res.body contains the requested account
      */
-    getAccount(req, res) {
+    getAccount = (req, res) => {
 
         var id = parseInt(req.params.id);
 
@@ -60,14 +60,14 @@ export default class TestAdapter {
                 log.error(error);
                 res.status(500).send({'message': error.toString()});
             });
-    }
+    };
 
     /**
      * Gets all accounts.
      * @param {Object} req - no used
      * @param {Object} res - res.body contains an array of all accounts
      */
-    getAccounts(req, res) {
+    getAccounts = (req, res) => {
         accountService.getAccounts()
             .then(function(accounts) {
                 res.send(accounts);
@@ -76,14 +76,14 @@ export default class TestAdapter {
                 log.error(error);
                 res.status(500).send({'message': error.toString()});
             });
-    }
+    };
 
     /**
      * Deletes an account.
      * @param {Object} req - req.params.id contains id of the account to delete
      * @param {Object} res - res.body contains no content
      */
-    deleteAccount(req, res) {
+    deleteAccount = (req, res) => {
 
         var id = parseInt(req.params.id);
 
@@ -95,5 +95,9 @@ export default class TestAdapter {
                 log.error(error);
                 res.status(500).send({'message': error.toString()});
             });
-    }
+    };
 }
+
+let accountAdapter = new AccountAdapter();
+
+export default accountAdapter;

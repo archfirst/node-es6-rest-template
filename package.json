@@ -12,10 +12,10 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
+    "lint": "eslint src --ext .js",
     "test": "mocha",
-    "prestart": "babel src -d dist",
-    "start": "node dist/index.js | bunyan -o short",
-    "lint": "eslint src --ext .js"
+    "build": "del-cli dist && npm run lint && babel src -d dist",
+    "start": "node dist/index.js | bunyan -o short"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -36,6 +36,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
+    "del-cli": "^1.1.0",
     "eslint": "^3.19.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",

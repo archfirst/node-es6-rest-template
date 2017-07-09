@@ -1,4 +1,4 @@
-import * as bunyan from 'bunyan';
+import { createLogger } from 'bunyan';
 
 // ----- Log levels -----
 // fatal (60): The service/app is going to stop or become unusable now.
@@ -8,7 +8,7 @@ import * as bunyan from 'bunyan';
 // debug (20): Anything else, i.e. too verbose to be included in "info" level.
 // trace (10): Logging from external libraries used by your app or very detailed application logging.
 
-export default bunyan.createLogger({
+const log = createLogger({
     name: 'server',
     streams: [
         {
@@ -21,3 +21,5 @@ export default bunyan.createLogger({
         }
     ]
 });
+
+export default log;

@@ -1,31 +1,32 @@
 // -----------------------------------------------------------------------------
 // Load environment variables from the .env file before doing anything else
 // -----------------------------------------------------------------------------
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { config as envConfig } from 'dotenv';
+envConfig();
 
 // --- Remaining imports -----
-import * as http from 'http';
-import { app } from './adapters';
-import { log } from './infrastructure';
+import { createServer } from 'http';
+import { createApp } from './adapters';
+import { log } from './core';
 
 // -----------------------------------------------------------------------------
 // Start the HTTP Server using the Express App
 // -----------------------------------------------------------------------------
 var port = process.env.SERVER_PORT;
-var server = http.createServer(app);
+var app = createApp();
+var server = createServer(app);
 server.listen(port, () => log.info('Listening on port ' + port));
 
 // -----------------------------------------------------------------------------
-// Stop the HTTP server and the database when SIGINT is received
-// (i.e. Ctrl-C is pressed)
+// When SIGINT is received (i.e. Ctrl-C is pressed), shutdown services
 // -----------------------------------------------------------------------------
 process.on('SIGINT', () => {
     log.info('SIGINT received ...');
+    log.info('Shutting down the server');
 
     server.close(() => {
-        log.info('Server stopped ...');
+        log.info('Server has been shutdown');
         log.info('Exiting process ...');
-        process.exit();
+        process.exit(0);
     });
 });

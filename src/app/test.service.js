@@ -1,4 +1,4 @@
-import { accountRepository } from '../db';
+import { accountRepository } from '../adapters';
 
 export default class TestService {
     /**
