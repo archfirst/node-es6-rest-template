@@ -4,8 +4,8 @@ module.exports = {
     dropData: dropData
 };
 
+var axios = require('axios');
 var api = require('../common/constants').api;
-var request = require('./request');
 
 /**
  * Drop all data on the server.
@@ -14,6 +14,5 @@ function dropData() {
 
     var magicId = 1234;
 
-    return request.del(api + '/tests/' + magicId)
-        .endAsync();
+    return axios.delete(api + '/tests/' + magicId);
 }

@@ -29,6 +29,7 @@
     "underscore.string": "^3.3.4"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -40,7 +41,6 @@
     "eslint": "^3.19.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
-    "superagent": "^3.5.2",
     "yadda": "^1.3.0"
   }
 }

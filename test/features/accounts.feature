@@ -28,4 +28,4 @@ Scenario: Account Deletion
 
     And I ask for the account
 
-    Then a 404 Not Found error should be returned
+    Then a 404 error should be returned

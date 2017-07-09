@@ -2,7 +2,6 @@
 
 var Yadda = require('yadda');
 var expect = require('./common/chai.helpers').expect;
-var formatHttpError = require('./common/http.helpers').formatHttpError;
 var accountService = require('./services/account.service');
 
 var English = Yadda.localisation.English;
@@ -52,8 +51,8 @@ module.exports = English.library(dictionary)
                 self.ctx.account = account;
                 next();
             })
-            .catch(function(httpError) {
-                self.ctx.error = formatHttpError(httpError);
+            .catch(function(error) {
+                self.ctx.error = error.response.status.toString();
                 next();
             });
     })

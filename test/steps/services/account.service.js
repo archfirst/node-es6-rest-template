@@ -8,8 +8,8 @@ module.exports = {
     deleteAccount: deleteAccount
 };
 
+var axios = require('axios');
 var api = require('../common/constants').api;
-var request = require('./request');
 
 /**
  * Creates an account.
@@ -19,11 +19,9 @@ var request = require('./request');
  */
 function createAccount(account) {
 
-    return request.post(api + '/accounts')
-        .send(account)
-        .endAsync()
-        .then(function(res) {
-            return res.body;
+    return axios.post(api + '/accounts', account)
+        .then(function(response) {
+            return response.data;
         });
 }
 
@@ -35,11 +33,9 @@ function createAccount(account) {
  */
 function updateAccount(account) {
 
-    return request.put(api + '/accounts/' + account.id)
-        .send(account)
-        .endAsync()
-        .then(function(res) {
-            return res.body;
+    return axios.put(api + '/accounts/' + account.id, account)
+        .then(function(response) {
+            return response.data;
         });
 }
 
@@ -51,10 +47,9 @@ function updateAccount(account) {
  */
 function getAccount(accountId) {
 
-    return request.get(api + '/accounts/' + accountId)
-        .endAsync()
-        .then(function(res) {
-            return res.body;
+    return axios.get(api + '/accounts/' + accountId)
+        .then(function(response) {
+            return response.data;
         });
 }
 
@@ -65,10 +60,9 @@ function getAccount(accountId) {
  */
 function getAccounts() {
 
-    return request.get(api + '/accounts')
-        .endAsync()
-        .then(function(res) {
-            return res.body;
+    return axios.get(api + '/accounts')
+        .then(function(response) {
+            return response.data;
         });
 }
 
@@ -81,6 +75,5 @@ function getAccounts() {
  */
 function deleteAccount(accountId) {
 
-    return request.del(api + '/accounts/' + accountId)
-        .endAsync();
+    return axios.delete(api + '/accounts/' + accountId);
 }
