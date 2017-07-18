@@ -2,7 +2,7 @@
   "name": "node-es6-rest-template",
   "version": "0.1.0",
   "description": "A template to kick-start Node.js projects using ES6 and RESTful API best practices",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "author": "Naresh Bhatia",
   "license": "MIT",
   "homepage": "https://github.com/archfirst/node-es6-rest-template",
