@@ -12,9 +12,9 @@ import { log } from './core';
 // -----------------------------------------------------------------------------
 // Start the HTTP Server using the Express App
 // -----------------------------------------------------------------------------
-var port = process.env.SERVER_PORT;
-var app = createApp();
-var server = createServer(app);
+const port = process.env.SERVER_PORT;
+const app = createApp();
+const server = createServer(app);
 server.listen(port, () => log.info('Listening on port ' + port));
 
 // -----------------------------------------------------------------------------

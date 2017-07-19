@@ -9,7 +9,7 @@ class AccountAdapter {
      */
     createAccount = (req, res) => {
 
-        var accountData = req.body;
+        const accountData = req.body;
 
         accountService.createAccount(accountData)
             .then(function(account) {
@@ -28,7 +28,7 @@ class AccountAdapter {
      */
     updateAccount = (req, res) => {
 
-        var accountData = req.body;
+        const accountData = req.body;
 
         accountService.updateAccount(accountData)
             .then(function(account) {
@@ -47,7 +47,7 @@ class AccountAdapter {
      */
     getAccount = (req, res) => {
 
-        var id = parseInt(req.params.id);
+        const id = parseInt(req.params.id);
 
         accountService.getAccount(id)
             .then(function(account) {
@@ -87,7 +87,7 @@ class AccountAdapter {
      */
     deleteAccount = (req, res) => {
 
-        var id = parseInt(req.params.id);
+        const id = parseInt(req.params.id);
 
         accountService.deleteAccount(id)
             .then(function() {
@@ -100,6 +100,6 @@ class AccountAdapter {
     };
 }
 
-let accountAdapter = new AccountAdapter();
+const accountAdapter = new AccountAdapter();
 
 export default accountAdapter;

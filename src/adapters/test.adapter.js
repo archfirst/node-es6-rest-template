@@ -9,7 +9,7 @@ class TestAdapter {
      * @param {Object} res - res.body contains no content
      */
     dropData = (req, res) => {
-        let id = parseInt(req.params.id);
+        const id = parseInt(req.params.id);
         if (id !== 1234) {
             res.status(500).send({'message': 'Unauthorized'});
         }
@@ -19,6 +19,6 @@ class TestAdapter {
     };
 }
 
-let testAdapter = new TestAdapter();
+const testAdapter = new TestAdapter();
 
 export default testAdapter;

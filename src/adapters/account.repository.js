@@ -2,8 +2,8 @@ import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 import { NotFoundError } from '../core/index';
 
-var accounts = [];
-var nextAccountId = 1;
+const accounts = [];
+let nextAccountId = 1;
 
 class AccountRepository {
     /**
@@ -12,7 +12,7 @@ class AccountRepository {
      * @return {Promise} A promise that returns the inserted account (including the id)
      */
     createAccount(accountData) {
-        var account = Object.assign({}, accountData, {id: nextAccountId++});
+        const account = Object.assign({}, accountData, {id: nextAccountId++});
         accounts.push(account);
         return Promise.resolve(account);
     }
@@ -23,7 +23,7 @@ class AccountRepository {
      * @return {Promise} A promise that returns the updated account (including the id)
      */
     updateAccount(accountData) {
-        var account = find(accounts, ['id', accountData.id]);
+        const account = find(accounts, ['id', accountData.id]);
         return account ?
             Promise.resolve(Object.assign(account, accountData)) :
             Promise.reject(new NotFoundError());
@@ -35,7 +35,7 @@ class AccountRepository {
      * @return {Promise} A promise that returns the desired account.
      */
     getAccount(id) {
-        var account = find(accounts, ['id', id]);
+        const account = find(accounts, ['id', id]);
         return account ?
             Promise.resolve(account) :
             Promise.reject(new NotFoundError());
@@ -55,7 +55,7 @@ class AccountRepository {
      * @return {Promise} A promise that gets fulfilled when the account is deleted.
      */
     deleteAccount(id) {
-        var index = findIndex(accounts, function(account) {
+        const index = findIndex(accounts, function(account) {
             return account.id === id;
         });
         return index >= 0 ?
@@ -71,6 +71,6 @@ class AccountRepository {
     }
 }
 
-let accountRepository = new AccountRepository();
+const accountRepository = new AccountRepository();
 
 export default accountRepository;
