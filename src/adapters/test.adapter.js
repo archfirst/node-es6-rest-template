@@ -11,11 +11,11 @@ class TestAdapter {
     dropData = (req, res) => {
         const id = parseInt(req.params.id);
         if (id !== 1234) {
-            res.status(500).send({'message': 'Unauthorized'});
+            res.status(500).send({ message: 'Unauthorized' });
         }
 
         testService.dropData();
-        res.status(204).send();  // No Content
+        res.status(204).send(); // No Content
     };
 }
 

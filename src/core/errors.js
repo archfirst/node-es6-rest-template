@@ -4,7 +4,7 @@
 export function NotFoundError(message = 'Not Found') {
     this.name = 'NotFoundError';
     this.message = message;
-    this.stack = (new Error()).stack;
+    this.stack = new Error().stack;
 }
 NotFoundError.prototype = Object.create(Error.prototype);
 NotFoundError.prototype.constructor = NotFoundError;

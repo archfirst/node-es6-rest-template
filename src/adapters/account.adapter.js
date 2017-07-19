@@ -8,16 +8,16 @@ class AccountAdapter {
      * @param {Object} res - res.body contains the inserted account (including the id)
      */
     createAccount = (req, res) => {
-
         const accountData = req.body;
 
-        accountService.createAccount(accountData)
+        accountService
+            .createAccount(accountData)
             .then(function(account) {
                 res.send(account);
             })
             .catch(function(error) {
                 log.error(error);
-                res.status(500).send({'message': error.toString()});
+                res.status(500).send({ message: error.toString() });
             });
     };
 
@@ -27,16 +27,16 @@ class AccountAdapter {
      * @param {Object} res - res.body contains the updated account (including the id)
      */
     updateAccount = (req, res) => {
-
         const accountData = req.body;
 
-        accountService.updateAccount(accountData)
+        accountService
+            .updateAccount(accountData)
             .then(function(account) {
                 res.send(account);
             })
             .catch(function(error) {
                 log.error(error);
-                res.status(500).send({'message': error.toString()});
+                res.status(500).send({ message: error.toString() });
             });
     };
 
@@ -46,20 +46,21 @@ class AccountAdapter {
      * @param {Object} res - res.body contains the requested account
      */
     getAccount = (req, res) => {
-
         const id = parseInt(req.params.id);
 
-        accountService.getAccount(id)
+        accountService
+            .getAccount(id)
             .then(function(account) {
                 res.send(account);
             })
             .catch(function(error) {
                 if (error instanceof NotFoundError) {
-                    res.status(404).send({'message': 'Account ' + id + ' does not exist'});
-                }
-                else {
+                    res
+                        .status(404)
+                        .send({ message: 'Account ' + id + ' does not exist' });
+                } else {
                     log.error(error);
-                    res.status(500).send({'message': error.toString()});
+                    res.status(500).send({ message: error.toString() });
                 }
             });
     };
@@ -70,13 +71,14 @@ class AccountAdapter {
      * @param {Object} res - res.body contains an array of all accounts
      */
     getAccounts = (req, res) => {
-        accountService.getAccounts()
+        accountService
+            .getAccounts()
             .then(function(accounts) {
                 res.send(accounts);
             })
             .catch(function(error) {
                 log.error(error);
-                res.status(500).send({'message': error.toString()});
+                res.status(500).send({ message: error.toString() });
             });
     };
 
@@ -86,16 +88,16 @@ class AccountAdapter {
      * @param {Object} res - res.body contains no content
      */
     deleteAccount = (req, res) => {
-
         const id = parseInt(req.params.id);
 
-        accountService.deleteAccount(id)
+        accountService
+            .deleteAccount(id)
             .then(function() {
-                res.status(204).send();  // No Content
+                res.status(204).send(); // No Content
             })
             .catch(function(error) {
                 log.error(error);
-                res.status(500).send({'message': error.toString()});
+                res.status(500).send({ message: error.toString() });
             });
     };
 }

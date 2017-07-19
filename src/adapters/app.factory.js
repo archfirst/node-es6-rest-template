@@ -31,6 +31,5 @@ export default function createApp() {
 
     app.delete('/v1/tests/:id', testAdapter.dropData);
 
-
     return app;
 }

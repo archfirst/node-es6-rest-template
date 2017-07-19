@@ -12,7 +12,7 @@ class AccountRepository {
      * @return {Promise} A promise that returns the inserted account (including the id)
      */
     createAccount(accountData) {
-        const account = Object.assign({}, accountData, {id: nextAccountId++});
+        const account = Object.assign({}, accountData, { id: nextAccountId++ });
         accounts.push(account);
         return Promise.resolve(account);
     }
@@ -24,9 +24,9 @@ class AccountRepository {
      */
     updateAccount(accountData) {
         const account = find(accounts, ['id', accountData.id]);
-        return account ?
-            Promise.resolve(Object.assign(account, accountData)) :
-            Promise.reject(new NotFoundError());
+        return account
+            ? Promise.resolve(Object.assign(account, accountData))
+            : Promise.reject(new NotFoundError());
     }
 
     /**
@@ -36,9 +36,9 @@ class AccountRepository {
      */
     getAccount(id) {
         const account = find(accounts, ['id', id]);
-        return account ?
-            Promise.resolve(account) :
-            Promise.reject(new NotFoundError());
+        return account
+            ? Promise.resolve(account)
+            : Promise.reject(new NotFoundError());
     }
 
     /**
@@ -58,9 +58,9 @@ class AccountRepository {
         const index = findIndex(accounts, function(account) {
             return account.id === id;
         });
-        return index >= 0 ?
-            Promise.resolve(accounts.splice(index, 1)) :
-            Promise.reject(new NotFoundError());
+        return index >= 0
+            ? Promise.resolve(accounts.splice(index, 1))
+            : Promise.reject(new NotFoundError());
     }
 
     /**

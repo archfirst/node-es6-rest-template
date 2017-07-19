@@ -1,7 +1,7 @@
 {
   "name": "node-es6-rest-template",
-  "version": "0.1.0",
   "description": "A template to kick-start Node.js projects using ES6 and RESTful API best practices",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "author": "Naresh Bhatia",
   "license": "MIT",
@@ -10,24 +10,6 @@
     "type": "git",
     "url": "https://github.com/archfirst/node-es6-rest-template.git"
   },
-  "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
-    "lint": "eslint src --ext .js",
-    "lint:test": "eslint test --ext .js",
-    "test": "mocha",
-    "build": "del-cli dist && npm run lint && babel src -d dist",
-    "start": "node dist/index.js | bunyan -o short"
-  },
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "bunyan": "^1.8.10",
-    "cors": "^2.8.3",
-    "dotenv": "^4.0.0",
-    "express": "^4.15.3",
-    "lodash": "^4.17.4",
-    "morgan": "^1.8.2",
-    "underscore.string": "^3.3.4"
-  },
   "devDependencies": {
     "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
@@ -35,12 +17,41 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "chai": "^4.0.2",
+    "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "del-cli": "^1.1.0",
     "eslint": "^4.2.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "yadda": "^1.3.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bunyan": "^1.8.10",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.2",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.2",
+    "prettier": "^1.5.3",
+    "underscore.string": "^3.3.4"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
+    "lint": "eslint src --ext .js",
+    "lint:test": "eslint test --ext .js",
+    "test": "mocha",
+    "build": "del-cli dist && npm run lint && babel src -d dist",
+    "start": "node dist/index.js | bunyan -o short",
+    "format": "prettier --print-width 80 --tab-width 4 --single-quote --write 'src/**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --print-width 80 --tab-width 4 --single-quote --write",
+      "git add"
+    ]
   }
 }

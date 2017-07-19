@@ -13,11 +13,11 @@ const log = createLogger({
     streams: [
         {
             level: 'info',
-            stream: process.stdout     // log INFO and above to stdout
+            stream: process.stdout // log INFO and above to stdout
         },
         {
             level: 'error',
-            path: 'app-error.log'      // log ERROR and above to a file
+            path: 'app-error.log' // log ERROR and above to a file
         }
     ]
 });
