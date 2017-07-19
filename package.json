@@ -39,7 +39,8 @@
     "underscore.string": "^3.3.4"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/index.js | bunyan -o short",
+    "watch": "nodemon --exec npm run watch:serve | bunyan -o short",
+    "watch:serve": "babel-node --inspect src/index.js",
     "lint": "eslint src --ext .js",
     "lint:test": "eslint test --ext .js",
     "test": "mocha",

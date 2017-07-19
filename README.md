@@ -28,11 +28,11 @@ First make a copy of the sample environment file `.env-sample` to `.env`. Make a
 To run the application in development mode:
 ```bash
 $ npm install
-$ npm run dev
+$ npm run watch
 ```
 
 - `npm install` will install the required node libraries under `node_modules`. This needs to be run only once.
-- `npm run dev` will start the application. It is designed for an efficient development process. As you make changes to the code, the application will restart to reflect the changes immediately.
+- `npm run watch` will start the application. It is designed for an efficient development process. As you make changes to the code, the application will restart to reflect the changes immediately. Also, Node.js is started with the `--inspect` flag so that debugging is turned on.
 
 To verify that the application is working correctly, point your browser to [http://localhost:8080/v1/accounts](http://localhost:8080/v1/accounts) - you should see a response with a list of accounts in JSON format. Since the persistence layer is in memory, the list will be empty.
 
@@ -71,12 +71,6 @@ You can also substitute the following command instead of `npm start` to avoid a 
 
     node dist/index.js | bunyan -o short
 
-Debugging the application
--------------------------
-To debug the application start node with `--inspect` option
-
-    $ node --inspect dist/index.js | bunyan -o short
-    
 Folder Structure
 ----------------
 
