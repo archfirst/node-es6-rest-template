@@ -1,3 +1,5 @@
+import { NotFoundError } from '../utils';
+
 const books = [
     {
         id: 'design-patterns',
@@ -21,10 +23,16 @@ const books = [
     }
 ];
 
+function getBook(id) {
+    const book = books.find(book => book.id === id);
+    return book ? Promise.resolve(book) : Promise.reject(new NotFoundError());
+}
+
 function getBooks() {
     return Promise.resolve(books);
 }
 
 export const bookRepository = {
+    getBook,
     getBooks
 };

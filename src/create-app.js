@@ -18,7 +18,7 @@ export function createApp() {
     app.use(bodyParser.json());
 
     // Add routes
-    app.get('/api/books', bookAdapter.getBooks);
+    bookAdapter.addRoutes(app);
 
     return app;
 }
