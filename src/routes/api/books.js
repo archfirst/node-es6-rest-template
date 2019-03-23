@@ -1,5 +1,6 @@
-import { bookService } from '../services';
-import { handleError } from '../utils';
+import express from 'express';
+import { bookService } from '../../services';
+import { handleError } from '../../utils';
 
 function getBook(req, res) {
     const { id } = req.params;
@@ -25,11 +26,6 @@ function getBooks(req, res) {
         });
 }
 
-function addRoutes(app) {
-    app.get('/api/books/:id', getBook);
-    app.get('/api/books', getBooks);
-}
-
-export const bookAdapter = {
-    addRoutes
-};
+export const booksRouter = express.Router();
+booksRouter.get('/:id', getBook);
+booksRouter.get('/', getBooks);

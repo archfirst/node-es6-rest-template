@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 
-import { bookAdapter } from './adapters';
+import { rootRouter } from './routes';
 
 export function createApp() {
     // Create Express App
@@ -18,7 +18,7 @@ export function createApp() {
     app.use(bodyParser.json());
 
     // Add routes
-    bookAdapter.addRoutes(app);
+    app.use(rootRouter);
 
     return app;
 }

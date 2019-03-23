@@ -46,16 +46,19 @@ layers as suggested by the
 (a.k.a. the
 [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/)):
 
--   The `adapter` layer _adapts_ interactions from the external world to the
-    service layer. This layer contains REST adapters.
+-   `routes:` This is the adapter layer of the Hexagonal Architecture. It adapts
+    the HTTP transforms the HTTP requests from the external world to the service
+    layer and transforms the objects returned by the service layer to HTTP
+    responses.
 
--   The `service` layer coordinates high-level activities such as creation of
-    domain objects and asking them to perform tasks requested by the external
-    world. It interacts with the repository layer to save and restore objects.
+-   `services`: The service layer coordinates high-level activities such as
+    creation of domain objects and asking them to perform tasks requested by the
+    external world. It interacts with the repository layer to save and restore
+    objects.
 
--   The `repository` layer is responsible for persisting domain objects and
-    performing CRUD operations on them. Note that this implementation uses
-    in-memory persistence but it can be easily modified to use a relational or
-    NoSQL database for persistence.
+-   `repositories`: The repository layer is responsible for persisting domain
+    objects and performing CRUD operations on them. This template uses in-memory
+    persistence, however it can be easily replaced to use a relational or NoSQL
+    database.
 
 -   The `utils` folder contains useful utilities and helpers.
