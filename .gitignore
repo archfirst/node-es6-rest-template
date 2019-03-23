@@ -12,7 +12,6 @@
 
 # Misc
 *.log
-/.env
 
 # System Files
 .DS_Store
