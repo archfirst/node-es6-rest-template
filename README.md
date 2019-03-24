@@ -20,9 +20,15 @@ $ npm install
 $ npm start
 ```
 
+The dev build starts the application in watch mode. If you make any changes to
+the source files, the application will recompile and restart.
+
 To verify that the application is working correctly, point your browser to
 [http://localhost:8080/api/books/design-patterns](http://localhost:8080/api/books/design-patterns) -
 you should see a response with one books in JSON format.
+
+To debug the application in Chrome, point the browser to chrome://inspect and
+click on "Open dedicated DevTools for Node".
 
 ## Production Build
 

@@ -1,31 +1,24 @@
 import express from 'express';
+import asyncHandler from 'express-async-handler';
 import { bookService } from '../../services';
-import { handleError } from '../../utils';
-
-function getBook(req, res) {
-    const { id } = req.params;
-
-    bookService
-        .getBook(id)
-        .then(book => {
-            res.send(book);
-        })
-        .catch(error => {
-            handleError(res, error);
-        });
-}
-
-function getBooks(req, res) {
-    bookService
-        .getBooks()
-        .then(books => {
-            res.send(books);
-        })
-        .catch(error => {
-            handleError(res, error);
-        });
-}
 
 export const booksRouter = express.Router();
-booksRouter.get('/:id', getBook);
-booksRouter.get('/', getBooks);
+
+// Get all books
+booksRouter.get(
+    '/',
+    asyncHandler(async (req, res) => {
+        const books = await bookService.getBooks();
+        res.send(books);
+    })
+);
+
+// Get one book
+booksRouter.get(
+    '/:id',
+    asyncHandler(async (req, res) => {
+        const { id } = req.params;
+        const book = await bookService.getBook(id);
+        res.send(book);
+    })
+);
