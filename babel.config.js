@@ -1,4 +1,13 @@
-const presets = ['@babel/env'];
+const presets = [
+    [
+        '@babel/preset-env',
+        {
+            targets: {
+                node: true
+            }
+        }
+    ]
+];
 
 const plugins = ['@babel/plugin-proposal-class-properties'];
 
