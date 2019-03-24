@@ -13,10 +13,11 @@
     "scripts": {
         "start": "nodemon --exec babel-node --inspect src/server.js",
         "prebuild": "rimraf dist",
-        "build": "npm run lint && babel src --out-dir dist",
+        "build": "npm run lint && babel src --out-dir dist && npm run copy-to-dist",
         "serve": "node dist/server.js",
         "lint": "eslint src --ext .js",
-        "format": "prettier --write '*.{js,md}' 'src/**/*.js'"
+        "format": "prettier --write '*.{js,md}' 'src/**/*.js'",
+        "copy-to-dist": "copyfiles --up 1 src/swagger.json dist"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
@@ -33,6 +34,7 @@
         "@babel/plugin-proposal-class-properties": "^7.4.0",
         "@babel/preset-env": "^7.4.2",
         "babel-eslint": "^10.0.1",
+        "copyfiles": "^2.1.0",
         "eslint": "^5.15.3",
         "eslint-config-prettier": "^4.1.0",
         "eslint-plugin-prettier": "^3.0.1",
