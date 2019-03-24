@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 import { rootRouter } from './routes';
 import { AppError } from './utils';
 
@@ -19,6 +20,10 @@ export function createApp() {
 
     // Add routes
     app.use(rootRouter);
+
+    // Add Swagger
+    const swaggerDocument = require('./swagger.json');
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     // Add application error handler
     app.use(appErrorHandler);
