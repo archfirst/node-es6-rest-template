@@ -27,6 +27,10 @@ To verify that the application is working correctly, point your browser to
 [http://localhost:8080/api/books/design-patterns](http://localhost:8080/api/books/design-patterns) -
 you should see a response with one books in JSON format.
 
+You can see a OpenAPI (Swagger) definition of the REST API at
+[http://localhost:8080/api-docs/](http://localhost:8080/api-docs/). This
+interface also allows you to interact with the API.
+
 To debug the application in Chrome, point the browser to chrome://inspect and
 click on "Open dedicated DevTools for Node".
 
