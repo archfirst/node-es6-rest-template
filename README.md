@@ -41,9 +41,10 @@ $ npm serve
 
 ```
 /src
-    /adapters
+    /routes
     /services
     /repositories
+    /utils
 ```
 
 The source folder contains sub-folders that arrange the application into logical
