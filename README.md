@@ -38,7 +38,14 @@ click on "Open dedicated DevTools for Node".
 
 ```bash
 $ npm run build
-$ npm serve
+$ npm run serve
+```
+
+## Docker Build
+
+```bash
+$ docker build -t <dockerhub_username>/node-es6-rest-template .
+$ docker run -p 8080:8080 -d -–name node-es6-rest-template <dockerhub_username>/node-es6-rest-template
 ```
 
 ## Folder Structure
