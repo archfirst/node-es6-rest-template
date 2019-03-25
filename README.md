@@ -44,8 +44,8 @@ $ npm run serve
 ## Docker Build
 
 ```bash
-$ docker build -t <dockerhub_username>/node-es6-rest-template .
-$ docker run -p 8080:8080 -d -–name node-es6-rest-template <dockerhub_username>/node-es6-rest-template
+$ docker build -t <dockerhub_username>/node-es6-rest-template:1.0.0 .
+$ docker run -d --rm --name rest-server -p 8080:8080 <dockerhub_username>/node-es6-rest-template:1.0.0
 ```
 
 ## Folder Structure
