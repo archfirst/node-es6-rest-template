@@ -34,8 +34,9 @@ export function createApp() {
 function appErrorHandler(err, req, res, next) {
     if (err instanceof AppError) {
         res.status(err.status).send({ error: err.message });
-    } else if (req.xhr) {
-        res.status(500).send({ error: 'Something failed!' });
+    } else if (err.detail) {
+        // check another property of err
+        res.status(500).send({ error: err.detail });
     } else {
         next(err);
     }
