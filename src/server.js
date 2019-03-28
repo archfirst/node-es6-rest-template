@@ -11,7 +11,7 @@ import { createApp } from './create-app';
 // -----------------------------------------------------------------------------
 // Start the HTTP Server using the Express App
 // -----------------------------------------------------------------------------
-const port = process.env.SERVER_PORT;
+const port = 8080; // can be mapped using docker
 const app = createApp();
 const server = createServer(app);
 server.listen(port, () => console.log('Listening on port ' + port));
