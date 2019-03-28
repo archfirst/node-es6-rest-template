@@ -7,17 +7,17 @@ info:
 servers:
   - description: Dev Server
     url: http://localhost:8080/api
-    
+
 paths:
   /books:
     get:
       description: Get all the books in the store
       responses:
         200:
-          description: Sucess
+          description: Success
           content:
-            application/json: 
-              schema:  
+            application/json:
+              schema:
                 $ref: '#/components/schemas/Books'
 
   /books/{id}:
@@ -33,9 +33,9 @@ paths:
             example: design-patterns
       responses:
         200:
-          description: Sucess
+          description: Success
           content:
-            application/json: 
+            application/json:
               schema:
                 $ref: '#/components/schemas/Book'
         404:
@@ -55,7 +55,7 @@ components:
         name:
           type: string
           example: Design Patterns - Elements of Reusable Object-Oriented Software
-          
+
     Books:
       type: array
       items:
