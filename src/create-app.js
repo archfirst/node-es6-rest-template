@@ -22,8 +22,8 @@ export function createApp() {
     app.use(rootRouter);
 
     // Add Swagger
-    const swaggerDocument = require('./swagger.json');
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    const apiDocument = require('./openapi.json');
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocument));
 
     // Add application error handler
     app.use(appErrorHandler);

@@ -1,0 +1,89 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Bookstore API",
+        "description": "An API to access books, publishers and authors"
+    },
+    "servers": [
+        {
+            "description": "Dev Server",
+            "url": "http://localhost:8080/api"
+        }
+    ],
+    "paths": {
+        "/books": {
+            "get": {
+                "description": "Get all the books in the store",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Books"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/books/{id}": {
+            "get": {
+                "description": "Get a specific book",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "identifier of the book",
+                        "schema": {
+                            "type": "string",
+                            "example": "design-patterns"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "type": "object",
+                "required": ["id", "name"],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "design-patterns"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Design Patterns - Elements of Reusable Object-Oriented Software"
+                    }
+                }
+            },
+            "Books": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Book"
+                }
+            }
+        }
+    }
+}

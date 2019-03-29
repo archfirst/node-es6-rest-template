@@ -17,7 +17,7 @@
         "serve": "node dist/server.js",
         "lint": "eslint src --ext .js",
         "format": "prettier --write '*.{js,md}' 'src/**/*.js'",
-        "copy-to-dist": "copyfiles --up 1 src/swagger.json dist"
+        "copy-to-dist": "copyfiles --up 1 src/openapi.json dist"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
